@@ -54,8 +54,6 @@ const GameCard = ({ game, onPlay }) => {
 
   const handlePlay = () => {
     new Audio('/audio/Whoosh.mp3').play();
-    const audio = document.querySelector('audio[src="/audio/loop.mp3"]');
-    if (audio) audio.pause();
     onPlay(game.link);
   };
 
@@ -95,8 +93,6 @@ const CircleGame = ({ game, index, isMobile, isTablet, onPlay }) => {
   
   const handlePlay = () => {
     new Audio('/audio/Whoosh.mp3').play();
-    const audio = document.querySelector('audio[src="/audio/loop.mp3"]');
-    if (audio) audio.pause();
     onPlay(game.link);
   };
   
@@ -142,8 +138,6 @@ const GamesPage = () => {
 
   const handleClose = () => {
     setGameUrl(null);
-    const audio = document.querySelector('audio[src="/audio/loop.mp3"]');
-    if (audio) audio.play();
   };
 
   useEffect(() => {

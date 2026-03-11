@@ -13,10 +13,7 @@ const navItems = [
 ];
 
 const NavBar = () => {
-  const [isAudioPlaying, setIsAudioPlaying] = useState(false);
-  const [isIndicatorActive, setIsIndicatorActive] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const audioElementRef = useRef(null);
   const navContainerRef = useRef(null);
   const { y: currentScrollY } = useWindowScroll();
   const [isNavVisible, setIsNavVisible] = useState(true);
@@ -25,26 +22,6 @@ const NavBar = () => {
   const playWhoosh = () => {
     new Audio('/audio/Whoosh.mp3').play();
   };
-
-  const toggleAudioIndicator = () => {
-    setIsAudioPlaying((prev) => !prev);
-    setIsIndicatorActive((prev) => !prev);
-  };
-
-  useEffect(() => {
-    if (audioElementRef.current) {
-      const playAudio = () => {
-        audioElementRef.current.play().catch(() => {});
-        document.removeEventListener('click', playAudio);
-        document.removeEventListener('touchstart', playAudio);
-      };
-      
-      audioElementRef.current.play().catch(() => {
-        document.addEventListener('click', playAudio, { once: true });
-        document.addEventListener('touchstart', playAudio, { once: true });
-      });
-    }
-  }, []);
 
   useEffect(() => {
     if (currentScrollY === 0) {
@@ -115,14 +92,6 @@ const NavBar = () => {
                 )
               ))}
             </div>
-
-            <audio
-              ref={audioElementRef}
-              className="hidden"
-              src="/audio/loop.mp3"
-              loop
-              autoPlay
-            />
 
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

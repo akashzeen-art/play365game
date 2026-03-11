@@ -21,15 +21,11 @@ const CategoriesPage = () => {
 
   const handlePlay = (url) => {
     new Audio('/audio/Whoosh.mp3').play();
-    const audio = document.querySelector('audio[src="/audio/loop.mp3"]');
-    if (audio) audio.pause();
     setGameUrl(url);
   };
 
   const handleClose = () => {
     setGameUrl(null);
-    const audio = document.querySelector('audio[src="/audio/loop.mp3"]');
-    if (audio) audio.play();
   };
 
   return (

@@ -11,12 +11,6 @@ function App() {
 
   const handlePreloaderComplete = () => {
     setLoading(false);
-    setTimeout(() => {
-      const audio = document.querySelector('audio[src="/audio/loop.mp3"]');
-      if (audio) {
-        audio.play().catch(() => {});
-      }
-    }, 500);
   };
 
   return (
