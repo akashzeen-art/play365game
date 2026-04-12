@@ -2,10 +2,12 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
 import AnimatedTitle from "./AnimatedTitle";
+import { useLanguage } from "../context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
+  const { t } = useLanguage();
   useGSAP(() => {
     const clipAnimation = gsap.timeline({
       scrollTrigger: {
@@ -29,20 +31,17 @@ const About = () => {
     <div id="about" className="min-h-screen w-screen">
       <div className="relative mb-8 mt-36 flex flex-col items-center gap-5">
         <p className="font-general text-sm uppercase md:text-[10px]">
-          Welcome to Play365Game
+          {t.welcomeTo}
         </p>
 
         <AnimatedTitle
-          title="Exper<b>i</b>ence the ultimate <br /> gaming platf<b>o</b>rm"
+          title={t.experienceUltimate}
           containerClass="mt-5 !text-black text-center"
         />
 
         <div className="about-subtext">
-          <p>Where every game is an adventure waiting to be conquered</p>
-          <p className="text-gray-500">
-            Play365Game brings you instant access to hundreds of games across all genres,
-            from action-packed shooters to brain-teasing puzzles
-          </p>
+          <p>{t.whereEvery}</p>
+          <p className="text-gray-500">{t.instantAccess}</p>
         </div>
       </div>
 

@@ -32,7 +32,7 @@ const AnimatedTitle = ({ title, containerClass }) => {
     }, containerRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [title]);
 
   return (
     <div ref={containerRef} className={clsx("animated-title", containerClass)}>

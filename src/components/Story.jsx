@@ -3,10 +3,12 @@ import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "./Button";
 import AnimatedTitle from "./AnimatedTitle";
+import { useLanguage } from "../context/LanguageContext";
 
 const FloatingImage = () => {
   const frameRef = useRef(null);
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   const handleMouseMove = (e) => {
     const { clientX, clientY } = e;
@@ -48,12 +50,12 @@ const FloatingImage = () => {
     <div id="story" className="min-h-dvh w-screen bg-black text-blue-50">
       <div className="flex size-full flex-col items-center py-10 pb-24">
         <p className="font-general text-sm uppercase md:text-[10px]">
-          your gaming journey starts here
+          {t.journeyStarts}
         </p>
 
         <div className="relative size-full">
           <AnimatedTitle
-            title="disc<b>o</b>ver <br /> endless g<b>a</b>mes"
+            title={t.discoverEndless}
             containerClass="mt-5 pointer-events-none mix-blend-difference relative z-10"
           />
 
@@ -104,18 +106,14 @@ const FloatingImage = () => {
         <div className="-mt-80 flex w-full justify-center md:-mt-64 md:me-44 md:justify-end">
           <div className="flex h-full w-fit flex-col items-center md:items-start">
             <p className="mt-3 max-w-sm text-center font-circular-web text-violet-50 md:text-start">
-              Jump into thrilling gameplay with instant access to top-rated games. Challenge yourself, compete globally, and dominate the leaderboards.
+              {t.jumpInto}
             </p>
 
             <div onClick={() => {
               navigate('/games');
               setTimeout(() => window.scrollTo(0, 0), 100);
             }}>
-              <Button
-                id="realm-btn"
-                title="Play Now"
-                containerClass="mt-5"
-              />
+              <Button id="realm-btn" title={t.playNow} containerClass="mt-5" />
             </div>
           </div>
         </div>

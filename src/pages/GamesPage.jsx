@@ -5,6 +5,7 @@ import { useState, useRef, useEffect } from "react";
 import { TiLocationArrow } from "react-icons/ti";
 import { IoMdClose } from "react-icons/io";
 import AnimatedTitle from "../components/AnimatedTitle";
+import { useLanguage } from "../context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -39,6 +40,7 @@ const games = [
 ];
 
 const GameCard = ({ game, onPlay }) => {
+  const { t } = useLanguage();
   const [transformStyle, setTransformStyle] = useState("");
   const cardRef = useRef(null);
 
@@ -76,7 +78,7 @@ const GameCard = ({ game, onPlay }) => {
         </div>
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-t from-black via-black/80 to-transparent opacity-0 transition-all duration-500 group-hover:opacity-100">
           <button onClick={handlePlay} className="flex items-center gap-1 rounded-full bg-violet-300 px-4 py-2 font-general text-xs font-bold uppercase text-black transition-transform hover:scale-110">
-            <span>Play</span>
+            <span>{t.playBtn}</span>
             <TiLocationArrow />
           </button>
         </div>
@@ -128,6 +130,7 @@ const CircleGame = ({ game, index, isMobile, isTablet, onPlay }) => {
 };
 
 const GamesPage = () => {
+  const { t } = useLanguage();
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
   const [gameUrl, setGameUrl] = useState(null);
@@ -183,23 +186,23 @@ const GamesPage = () => {
         <div className="container relative z-10 mx-auto px-5 md:px-10">
           <div className="mb-16 text-center">
             <p className="games-subtitle mb-3 font-general text-xs uppercase tracking-wider text-violet-300 md:text-sm">
-              Play & Conquer
+              {t.playConquer}
             </p>
             <div className="games-title">
               <AnimatedTitle
-                title="Expl<b>o</b>re Epic <br /> G<b>a</b>mes"
+                title={t.exploreEpic}
                 containerClass="!text-white"
               />
             </div>
             <p className="games-subtitle mx-auto mt-5 max-w-2xl font-circular-web text-sm text-white/70 md:text-base">
-              Dive into our collection of thrilling adventures
+              {t.thrilling}
             </p>
           </div>
 
           <div className="mb-20 overflow-hidden">
-            <h2 className="mb-6 special-font text-2xl font-black uppercase text-blue-75 sm:text-3xl md:text-5xl">
-              Feat<b>u</b>red Games
-            </h2>
+            <h2 className="mb-6 special-font text-2xl font-black uppercase text-blue-75 sm:text-3xl md:text-5xl"
+              dangerouslySetInnerHTML={{ __html: t.featuredGames }}
+            />
             <div className="flex gap-3 overflow-x-auto pb-4 scrollbar-hide sm:gap-4">
               {sliderGames.map((game) => (
                 <div key={game.id} className="min-w-[150px] sm:min-w-[200px] md:min-w-[250px]">
@@ -210,9 +213,9 @@ const GamesPage = () => {
           </div>
 
           <div className="mb-20">
-            <h2 className="mb-16 text-center special-font text-2xl font-black uppercase text-blue-75 sm:mb-20 sm:text-3xl md:mb-24 md:text-5xl">
-              Pop<b>u</b>lar Picks
-            </h2>
+            <h2 className="mb-16 text-center special-font text-2xl font-black uppercase text-blue-75 sm:mb-20 sm:text-3xl md:mb-24 md:text-5xl"
+              dangerouslySetInnerHTML={{ __html: t.popularPicks }}
+            />
             <div className="relative mx-auto flex h-[280px] w-full max-w-[280px] items-center justify-center sm:h-[400px] sm:max-w-[400px] md:h-[550px] md:max-w-[650px]">
               {circleGames.map((game, index) => (
                 <CircleGame key={game.id} game={game} index={index} isMobile={isMobile} isTablet={isTablet} onPlay={setGameUrl} />
@@ -222,9 +225,9 @@ const GamesPage = () => {
           </div>
 
           <div>
-            <h2 className="mb-6 special-font text-2xl font-black uppercase text-blue-75 sm:text-3xl md:text-5xl">
-              <b>A</b>ll Games
-            </h2>
+            <h2 className="mb-6 special-font text-2xl font-black uppercase text-blue-75 sm:text-3xl md:text-5xl"
+              dangerouslySetInnerHTML={{ __html: t.allGamesHeading }}
+            />
             <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
               {gridGames.map((game) => (
                 <GameCard key={game.id} game={game} onPlay={setGameUrl} />
@@ -238,7 +241,7 @@ const GamesPage = () => {
         <div className="fixed inset-0 z-50 bg-black">
           <button onClick={handleClose} className="absolute left-4 top-4 z-10 flex items-center gap-2 rounded-full bg-violet-300 px-4 py-2 font-general text-sm font-bold uppercase text-black transition-transform hover:scale-110">
             <IoMdClose className="text-xl" />
-            <span className="hidden sm:inline">Back</span>
+            <span className="hidden sm:inline">{t.back}</span>
           </button>
           <iframe src={gameUrl} className="h-full w-full border-0" title="Game" />
         </div>

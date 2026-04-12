@@ -1,6 +1,7 @@
 import AnimatedTitle from "./AnimatedTitle";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
+import { useLanguage } from "../context/LanguageContext";
 
 const ImageClipBox = ({ src, clipClass }) => (
   <div className={clipClass}>
@@ -10,6 +11,7 @@ const ImageClipBox = ({ src, clipClass }) => (
 
 const Contact = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   return (
     <div id="contact" className="my-20 min-h-96 w-screen  px-10">
@@ -38,19 +40,16 @@ const Contact = () => {
 
         <div className="flex flex-col items-center text-center">
           <p className="mb-10 font-general text-[10px] uppercase">
-            Join Our Community
+            {t.joinCommunity}
           </p>
 
           <AnimatedTitle
-            title="let&#39;s pl<b>a</b>y and <br /> conquer <br /> t<b>o</b>gether."
+            title={t.letsPlay}
             className="special-font !md:text-[6.2rem] w-full font-zentry !text-5xl !font-black !leading-[.9]"
           />
 
-          <div onClick={() => {
-            navigate('/games');
-            setTimeout(() => window.scrollTo(0, 0), 100);
-          }}>
-            <Button title="Play Now" containerClass="mt-10 cursor-pointer" />
+          <div onClick={() => { navigate('/games'); setTimeout(() => window.scrollTo(0, 0), 100); }}>
+            <Button title={t.playNow} containerClass="mt-10 cursor-pointer" />
           </div>
         </div>
       </div>

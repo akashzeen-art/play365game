@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { TiLocationArrow } from "react-icons/ti";
 import { useNavigate } from "react-router-dom";
+import { useLanguage } from "../context/LanguageContext";
 
 export const BentoTilt = ({ children, className = "" }) => {
   const [transformStyle, setTransformStyle] = useState("");
@@ -81,29 +82,25 @@ export const BentoCard = ({ src, title, description, isComingSoon, onClick }) =>
 
 const Features = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   return (
   <section className="bg-black pb-52">
     <div className="container mx-auto px-3 md:px-10">
       <div className="px-5 py-32">
         <p className="font-circular-web text-lg text-blue-50">
-          Explore Gaming Categories
+          {t.exploreCategories}
         </p>
         <p className="max-w-md font-circular-web text-lg text-blue-50 opacity-50">
-          Dive into our diverse collection of games spanning multiple genres.
-          From intense action to relaxing puzzles, find your perfect gaming experience.
+          {t.exploreDesc}
         </p>
       </div>
 
       <BentoTilt className="border-hsla relative mb-7 h-96 w-full overflow-hidden rounded-md md:h-[65vh]">
         <BentoCard
           src="videos/feature-1.mp4"
-          title={
-            <>
-              Acti<b>o</b>n
-            </>
-          }
-          description="Experience heart-pounding action games with intense combat, epic battles, and adrenaline-pumping gameplay."
+          title={<span dangerouslySetInnerHTML={{ __html: t.actionTitle }} />}
+          description={t.action}
           onClick={() => navigate('/categories', { state: { category: 'Action' } })}
           isComingSoon
         />
@@ -113,12 +110,8 @@ const Features = () => {
         <BentoTilt className="bento-tilt_1 row-span-1 md:col-span-1 md:row-span-2">
           <BentoCard
             src="videos/feature-2.mp4"
-            title={
-              <>
-                Puzz<b>l</b>e
-              </>
-            }
-            description="Challenge your mind with brain-teasing puzzles, strategic thinking, and mind-bending challenges."
+            title={<span dangerouslySetInnerHTML={{ __html: t.puzzleTitle }} />}
+            description={t.puzzle}
             onClick={() => navigate('/categories', { state: { category: 'Puzzle' } })}
             isComingSoon
           />
@@ -127,12 +120,8 @@ const Features = () => {
         <BentoTilt className="bento-tilt_1 row-span-1 ms-32 md:col-span-1 md:ms-0">
           <BentoCard
             src="videos/feature-3.mp4"
-            title={
-              <>
-                Top <b>1</b>0 Games
-              </>
-            }
-            description="Discover our most popular and trending games loved by players worldwide."
+            title={<span dangerouslySetInnerHTML={{ __html: t.top10Title }} />}
+            description={t.top10}
             onClick={() => navigate('/categories', { state: { category: 'Top 10 Games' } })}
             isComingSoon
           />
@@ -141,12 +130,8 @@ const Features = () => {
         <BentoTilt className="bento-tilt_1 me-14 md:col-span-1 md:me-0">
           <BentoCard
             src="videos/feature-4.mp4"
-            title={
-              <>
-                Arca<b>d</b>e
-              </>
-            }
-            description="Enjoy classic arcade fun with retro-inspired games, endless entertainment, and nostalgic vibes."
+            title={<span dangerouslySetInnerHTML={{ __html: t.arcadeTitle }} />}
+            description={t.arcade}
             onClick={() => navigate('/categories', { state: { category: 'Arcade' } })}
             isComingSoon
           />
@@ -157,9 +142,7 @@ const Features = () => {
             onClick={() => navigate('/categories', { state: { category: 'All Games' } })} 
             className="flex size-full flex-col justify-between bg-violet-300 p-5 cursor-pointer"
           >
-            <h1 className="bento-title special-font max-w-64 text-black">
-              M<b>o</b>re ga<b>m</b>es
-            </h1>
+            <h1 className="bento-title special-font max-w-64 text-black" dangerouslySetInnerHTML={{ __html: t.moreGames }} />
 
             <TiLocationArrow className="m-5 scale-[5] self-end" />
           </div>

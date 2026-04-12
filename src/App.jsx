@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from "react";
+import { LanguageProvider } from "./context/LanguageContext";
 import NavBar from "./components/Navbar";
 import Home from "./pages/Home";
 import GamesPage from "./pages/GamesPage";
@@ -14,7 +15,7 @@ function App() {
   };
 
   return (
-    <>
+    <LanguageProvider>
       {loading && <Preloader onComplete={handlePreloaderComplete} />}
       <Router>
         <main className="relative min-h-screen w-screen overflow-x-hidden">
@@ -26,7 +27,7 @@ function App() {
           </Routes>
         </main>
       </Router>
-    </>
+    </LanguageProvider>
   );
 }
 
