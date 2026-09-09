@@ -12,6 +12,9 @@ const LANGUAGES = [
   { code: "fr", label: "Français" },
   { code: "ar", label: "العربية" },
   { code: "es", label: "Español" },
+  { code: "rn", label: "Ikirundi" },
+  { code: "lo", label: "ລາວ" },
+  { code: "sw", label: "Kiswahili" },
 ];
 
 const NavBar = () => {
