@@ -6,6 +6,7 @@ import { TiLocationArrow } from "react-icons/ti";
 import { IoMdClose } from "react-icons/io";
 import AnimatedTitle from "../components/AnimatedTitle";
 import { useLanguage } from "../context/LanguageContext";
+import { premiumGames } from "../data/premiumGames";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -221,6 +222,17 @@ const GamesPage = () => {
                 <CircleGame key={game.id} game={game} index={index} isMobile={isMobile} isTablet={isTablet} onPlay={setGameUrl} />
               ))}
               <img src="/220208.gif" alt="center" className="absolute size-20 rounded-full object-cover sm:size-26 md:size-32" />
+            </div>
+          </div>
+
+          <div className="mb-20">
+            <h2 className="mb-6 special-font text-2xl font-black uppercase text-blue-75 sm:text-3xl md:text-5xl"
+              dangerouslySetInnerHTML={{ __html: t.premiumGames }}
+            />
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
+              {premiumGames.map((game) => (
+                <GameCard key={game.id} game={game} onPlay={setGameUrl} />
+              ))}
             </div>
           </div>
 

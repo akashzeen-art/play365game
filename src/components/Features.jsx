@@ -98,6 +98,16 @@ const Features = () => {
 
       <BentoTilt className="border-hsla relative mb-7 h-96 w-full overflow-hidden rounded-md md:h-[65vh]">
         <BentoCard
+          src="videos/feature-5.mp4"
+          title={<span dangerouslySetInnerHTML={{ __html: t.premiumGames }} />}
+          description={t.premium}
+          onClick={() => navigate('/categories', { state: { category: 'Premium Games' } })}
+          isComingSoon
+        />
+      </BentoTilt>
+
+      <BentoTilt className="border-hsla relative mb-7 h-96 w-full overflow-hidden rounded-md md:h-[65vh]">
+        <BentoCard
           src="videos/feature-1.mp4"
           title={<span dangerouslySetInnerHTML={{ __html: t.actionTitle }} />}
           description={t.action}

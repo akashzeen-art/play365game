@@ -3,7 +3,15 @@ import { TiLocationArrow } from "react-icons/ti";
 import { IoMdClose } from "react-icons/io";
 import { useLocation } from "react-router-dom";
 import { gamesData } from "../data/gamesData";
+import { premiumGames } from "../data/premiumGames";
 import { useLanguage } from "../context/LanguageContext";
+
+const premiumAsGamesData = premiumGames.map((g) => ({
+  name: g.title,
+  game_url: g.link,
+  thumbnail_url: g.img,
+  categories: ["Premium Games"],
+}));
 
 const CategoriesPage = () => {
   const { t } = useLanguage();
@@ -13,6 +21,7 @@ const CategoriesPage = () => {
   
   const categories = [
     { key: "All Games", label: t.allGames },
+    { key: "Premium Games", label: t.premiumGamesLabel },
     { key: "Top 10 Games", label: t.top10Games },
     { key: "Easy to Play", label: t.easyToPlay },
     { key: "Arcade", label: t.arcadeTitle.replace(/<[^>]*>/g, "") },
@@ -24,9 +33,10 @@ const CategoriesPage = () => {
     window.scrollTo(0, 0);
   }, [selectedCategory]);
   
-  const filteredGames = gamesData.filter(game => 
-    game.categories.includes(selectedCategory)
-  );
+  const filteredGames =
+    selectedCategory === "Premium Games"
+      ? premiumAsGamesData
+      : gamesData.filter((game) => game.categories.includes(selectedCategory));
 
   const handlePlay = (url) => {
     new Audio('/audio/Whoosh.mp3').play();

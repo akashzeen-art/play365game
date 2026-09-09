@@ -42,6 +42,9 @@ interface Translations {
   featuredGames: string;
   popularPicks: string;
   allGamesHeading: string;
+  premiumGames: string;
+  premiumGamesLabel: string;
+  premium: string;
 }
 
 const translations: Record<Lang, Translations> = {
@@ -84,6 +87,9 @@ const translations: Record<Lang, Translations> = {
     featuredGames: "Feat<b>u</b>red Games",
     popularPicks: "Pop<b>u</b>lar Picks",
     allGamesHeading: "<b>A</b>ll Games",
+    premiumGames: "Premi<b>u</b>m Games",
+    premiumGamesLabel: "Premium Games",
+    premium: "Unlock exclusive premium games with iconic characters, cinematic adventures, and top-quality gameplay.",
     allRights: "©Play365Game 2026. All rights reserved",
   },
   fr: {
@@ -125,6 +131,9 @@ const translations: Record<Lang, Translations> = {
     featuredGames: "J<b>e</b>ux en Vedette",
     popularPicks: "S<b>é</b>lections Populaires",
     allGamesHeading: "<b>T</b>ous les Jeux",
+    premiumGames: "Jeux Premi<b>u</b>m",
+    premiumGamesLabel: "Jeux Premium",
+    premium: "Débloquez des jeux premium exclusifs avec des personnages iconiques et des aventures cinématographiques.",
     allRights: "©Play365Game 2026. Tous droits réservés",
   },
   ar: {
@@ -166,6 +175,9 @@ const translations: Record<Lang, Translations> = {
     featuredGames: "ألعاب <b>م</b>ميزة",
     popularPicks: "الأكثر <b>ش</b>عبية",
     allGamesHeading: "<b>ج</b>ميع الألعاب",
+    premiumGames: "ألعاب ممي<b>ز</b>ة",
+    premiumGamesLabel: "ألعاب مميزة",
+    premium: "افتح ألعاباً مميزة حصرية مع شخصيات شهيرة ومغامرات سينمائية ولعب عالي الجودة.",
     allRights: "©Play365Game 2026. جميع الحقوق محفوظة",
   },
   es: {
@@ -207,6 +219,9 @@ const translations: Record<Lang, Translations> = {
     featuredGames: "Ju<b>e</b>gos Destacados",
     popularPicks: "Sel<b>e</b>cciones Populares",
     allGamesHeading: "<b>T</b>odos los Juegos",
+    premiumGames: "Juegos Premi<b>u</b>m",
+    premiumGamesLabel: "Juegos Premium",
+    premium: "Desbloquea juegos premium exclusivos con personajes icónicos, aventuras cinematográficas y jugabilidad de alta calidad.",
     allRights: "©Play365Game 2026. Todos los derechos reservados",
   },
   rn: {
@@ -248,6 +263,9 @@ const translations: Record<Lang, Translations> = {
     featuredGames: "Imiki<b>n</b>o Ihagaritswe",
     popularPicks: "Iyi<b>h</b>itwe Ikundwa",
     allGamesHeading: "<b>I</b>mikino Yose",
+    premiumGames: "Imikino ya Premi<b>u</b>m",
+    premiumGamesLabel: "Imikino ya Premium",
+    premium: "Fungura imikino ya premium idasanzwe n'abantu bakomeye n'urugendo rushimishije.",
     allRights: "©Play365Game 2026. Uburenganzira bwose bubungabunzwe",
   },
   lo: {
@@ -289,6 +307,9 @@ const translations: Record<Lang, Translations> = {
     featuredGames: "ເກມແນະນໍາ",
     popularPicks: "ເກມຍອດນິຍົມ",
     allGamesHeading: "ເກມທັງໝົດ",
+    premiumGames: "ເກມພຣີມຽມ",
+    premiumGamesLabel: "ເກມພຣີມຽມ",
+    premium: "ເປີດເກມພຣີມຽມພິເສດກັບຕົວລະຄອນທີ່ມີຊື່ສຽງ ແລະ ການຜະຈົນໄພແບບຮູບເງົາ.",
     allRights: "©Play365Game 2026. ສະຫງວນລິຂະສິດທັງໝົດ",
   },
   sw: {
@@ -330,6 +351,9 @@ const translations: Record<Lang, Translations> = {
     featuredGames: "Michezo Iliyoangaziwa",
     popularPicks: "Chaguo Maarufu",
     allGamesHeading: "Michezo Yote",
+    premiumGames: "Michezo ya Premi<b>u</b>m",
+    premiumGamesLabel: "Michezo ya Premium",
+    premium: "Fungua michezo ya premium ya kipekee yenye wahusika maarufu, adventures za sinema, na uchezaji bora.",
     allRights: "©Play365Game 2026. Haki zote zimehifadhiwa",
   },
 };
