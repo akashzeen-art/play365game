@@ -15,6 +15,7 @@ const LANGUAGES = [
   { code: "rn", label: "Ikirundi" },
   { code: "lo", label: "ລາວ" },
   { code: "sw", label: "Kiswahili" },
+  { code: "de", label: "Deutsch" },
 ];
 
 const NavBar = () => {

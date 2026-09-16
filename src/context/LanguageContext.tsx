@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 
-type Lang = "en" | "fr" | "ar" | "es" | "rn" | "lo" | "sw";
+type Lang = "en" | "fr" | "ar" | "es" | "rn" | "lo" | "sw" | "de";
 
 interface Translations {
   playNow: string;
@@ -355,6 +355,50 @@ const translations: Record<Lang, Translations> = {
     premiumGamesLabel: "Michezo ya Premium",
     premium: "Fungua michezo ya premium ya kipekee yenye wahusika maarufu, adventures za sinema, na uchezaji bora.",
     allRights: "©Play365Game 2026. Haki zote zimehifadhiwa",
+  },
+  de: {
+    playNow: "Jetzt spielen",
+    home: "Startseite",
+    games: "Spiele",
+    categories: "Kategorien",
+    welcomeTo: "Willkommen bei Play365Game",
+    experienceUltimate: "Erle<b>b</b>e die ultimative <br /> Gaming-Plattf<b>o</b>rm",
+    whereEvery: "Wo jedes Spiel ein Abenteuer ist, das darauf wartet, erobert zu werden",
+    instantAccess: "Play365Game bietet dir sofortigen Zugang zu Hunderten von Spielen aller Genres, von actiongeladenen Shootern bis zu kniffligen Puzzles.",
+    exploreCategories: "Spielkategorien entdecken",
+    exploreDesc: "Tauche ein in unsere vielfältige Spielesammlung. Von intensiver Action bis zu entspannenden Puzzles findest du dein perfektes Spielerlebnis.",
+    actionTitle: "Acti<b>o</b>n",
+    puzzleTitle: "Puzz<b>l</b>e",
+    top10Title: "Top-<b>1</b>0-Spiele",
+    arcadeTitle: "Arca<b>d</b>e",
+    action: "Erlebe packende Actionspiele mit intensiven Kämpfen, epischen Schlachten und adrenalingeladenem Gameplay.",
+    puzzle: "Fordere deinen Verstand mit kniffligen Puzzles, strategischem Denken und herausfordernden Rätseln.",
+    top10: "Entdecke unsere beliebtesten und angesagtesten Spiele, geliebt von Spielern weltweit.",
+    arcade: "Genieße klassischen Arcade-Spaß mit Retro-inspirierten Spielen, endloser Unterhaltung und nostalgischem Flair.",
+    moreGames: "Mehr <b>S</b>piele",
+    journeyStarts: "deine Gaming-Reise beginnt hier",
+    discoverEndless: "entdec<b>k</b>e <br /> endlos viele Spie<b>l</b>e",
+    jumpInto: "Steig ein in spannendes Gameplay mit sofortigem Zugang zu topbewerteten Spielen. Fordere dich heraus, tritt weltweit an und dominiere die Bestenlisten.",
+    joinCommunity: "Tritt unserer Community bei",
+    letsPlay: "lass uns spi<b>e</b>len und <br /> gemeinsam <br /> ero<b>b</b>ern.",
+    playAnytime: "Spielen jederzeit, überall",
+    gamingHub: "Dein Gaming-Hub wartet",
+    gameCategories: "Sp<b>i</b>elkategorien",
+    allGames: "Alle Spiele",
+    top10Games: "Top-10-Spiele",
+    easyToPlay: "Einfach zu spielen",
+    playBtn: "Spielen",
+    back: "Zurück",
+    playConquer: "Spielen & Erobern",
+    exploreEpic: "Epis<b>c</b>he Spiele <br /> entdec<b>k</b>en",
+    thrilling: "Tauche ein in unsere Sammlung packender Abenteuer",
+    featuredGames: "Empfohlene Sp<b>i</b>ele",
+    popularPicks: "Belie<b>b</b>te Auswahl",
+    allGamesHeading: "<b>A</b>lle Spiele",
+    premiumGames: "Premi<b>u</b>m-Spiele",
+    premiumGamesLabel: "Premium-Spiele",
+    premium: "Schalte exklusive Premium-Spiele mit ikonischen Charakteren, filmreifen Abenteuern und erstklassigem Gameplay frei.",
+    allRights: "©Play365Game 2026. Alle Rechte vorbehalten",
   },
 };
 
