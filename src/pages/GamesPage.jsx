@@ -1,7 +1,7 @@
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { TiLocationArrow } from "react-icons/ti";
 import { IoMdClose } from "react-icons/io";
 import AnimatedTitle from "../components/AnimatedTitle";
@@ -40,20 +40,8 @@ const games = [
   { id: 27, img: "https://cdn.timepass.games/images/09717a3d-6f4c-4396-ab37-5765173e43d2.webp", title: "Final Strike", category: "Action", link: "https://cdn.timepass.games/games/05cb773c-9b54-4773-aedc-24a42b568584/aee3cd6b-808d-432b-be3d-e0efe6b2f2ee/" },
 ];
 
-const GameCard = ({ game, onPlay }) => {
+const GameCard = ({ game, onPlay, premium = false, portrait = false }) => {
   const { t } = useLanguage();
-  const [transformStyle, setTransformStyle] = useState("");
-  const cardRef = useRef(null);
-
-  const handleMouseMove = (e) => {
-    if (!cardRef.current) return;
-    const { left, top, width, height } = cardRef.current.getBoundingClientRect();
-    const x = (e.clientX - left) / width;
-    const y = (e.clientY - top) / height;
-    const tiltX = (y - 0.5) * 8;
-    const tiltY = (x - 0.5) * -8;
-    setTransformStyle(`perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.02, 1.02, 1.02)`);
-  };
 
   const handlePlay = () => {
     new Audio('/audio/Whoosh.mp3').play();
@@ -61,24 +49,38 @@ const GameCard = ({ game, onPlay }) => {
   };
 
   return (
-    <div className="game-card-wrapper mb-4">
+    <div className="game-card-wrapper">
       <div
-        ref={cardRef}
-        className="game-card border-hsla group relative overflow-hidden rounded-xl transition-all duration-300"
-        onMouseMove={handleMouseMove}
-        onMouseLeave={() => setTransformStyle("")}
-        style={{ transform: transformStyle }}
+        onClick={handlePlay}
+        className={`group relative cursor-pointer overflow-hidden rounded-xl border-2 bg-black transition-all duration-300 hover:-translate-y-1 ${
+          premium
+            ? "border-yellow-300 shadow-[0_0_22px_rgba(237,255,102,0.28)]"
+            : "border-white/20 hover:border-violet-300"
+        }`}
       >
-        <div className="aspect-square w-full overflow-hidden bg-violet-300">
+        <div className={`relative w-full ${portrait ? "aspect-[9/16]" : "aspect-square"}`}>
           <img
             src={game.img}
             alt={game.title}
-            referrerPolicy="no-referrer"
-            className="h-full w-full object-cover transition-all duration-700 group-hover:scale-110"
+            loading="lazy"
+            className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
           />
         </div>
-        <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-t from-black via-black/80 to-transparent opacity-0 transition-all duration-500 group-hover:opacity-100">
-          <button onClick={handlePlay} className="flex items-center gap-1 rounded-full bg-violet-300 px-4 py-2 font-general text-xs font-bold uppercase text-black transition-transform hover:scale-110">
+        {premium && (
+          <span className="absolute left-2 top-2 z-20 rounded-full bg-yellow-300 px-2.5 py-1 font-general text-[10px] font-bold uppercase tracking-wider text-black">
+            Premium
+          </span>
+        )}
+        <div className="pointer-events-none absolute inset-0 z-10 flex flex-col items-center justify-center bg-black/75 p-3 opacity-0 transition-opacity duration-300 group-hover:pointer-events-auto group-hover:opacity-100">
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              handlePlay();
+            }}
+            className={`pointer-events-auto flex items-center gap-1 rounded-full px-4 py-2 font-general text-xs font-bold uppercase text-black transition-transform hover:scale-110 ${
+              premium ? "bg-yellow-300" : "bg-violet-300"
+            }`}
+          >
             <span>{t.playBtn}</span>
             <TiLocationArrow />
           </button>
@@ -200,14 +202,14 @@ const GamesPage = () => {
             </p>
           </div>
 
-          <div className="mb-20 overflow-hidden">
+          <div className="mb-20">
             <h2 className="mb-6 special-font text-2xl font-black uppercase text-blue-75 sm:text-3xl md:text-5xl"
               dangerouslySetInnerHTML={{ __html: t.featuredGames }}
             />
-            <div className="flex gap-3 overflow-x-auto pb-4 scrollbar-hide sm:gap-4">
+            <div className="flex gap-4 overflow-x-auto pb-6">
               {sliderGames.map((game) => (
-                <div key={game.id} className="min-w-[150px] sm:min-w-[200px] md:min-w-[250px]">
-                  <GameCard game={game} onPlay={setGameUrl} />
+                <div key={game.id} className="w-[200px] shrink-0 sm:w-[240px] md:w-[280px]">
+                  <GameCard game={game} onPlay={setGameUrl} portrait />
                 </div>
               ))}
             </div>
@@ -225,13 +227,24 @@ const GamesPage = () => {
             </div>
           </div>
 
-          <div className="mb-20">
-            <h2 className="mb-6 special-font text-2xl font-black uppercase text-blue-75 sm:text-3xl md:text-5xl"
-              dangerouslySetInnerHTML={{ __html: t.premiumGames }}
-            />
-            <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
+          <div className="relative mb-20 overflow-hidden rounded-3xl border border-yellow-300/60 bg-gradient-to-br from-yellow-300/15 via-violet-300/20 to-black/40 p-4 shadow-[0_0_40px_rgba(237,255,102,0.15)] sm:p-6 md:p-8">
+            <div className="pointer-events-none absolute -right-10 -top-10 size-40 rounded-full bg-yellow-300/20 blur-3xl" />
+            <div className="relative mb-6 flex flex-col items-start gap-3 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <span className="mb-3 inline-flex items-center rounded-full bg-yellow-300 px-3 py-1 font-general text-[10px] font-bold uppercase tracking-[0.2em] text-black md:text-xs">
+                  Exclusive
+                </span>
+                <h2 className="special-font text-2xl font-black uppercase text-yellow-300 sm:text-3xl md:text-5xl"
+                  dangerouslySetInnerHTML={{ __html: t.premiumGames }}
+                />
+                <p className="mt-2 max-w-xl font-circular-web text-sm text-white/80 md:text-base">
+                  {t.premium}
+                </p>
+              </div>
+            </div>
+            <div className="relative grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
               {premiumGames.map((game) => (
-                <GameCard key={game.id} game={game} onPlay={setGameUrl} />
+                <GameCard key={game.id} game={game} onPlay={setGameUrl} premium />
               ))}
             </div>
           </div>
@@ -242,7 +255,7 @@ const GamesPage = () => {
             />
             <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
               {gridGames.map((game) => (
-                <GameCard key={game.id} game={game} onPlay={setGameUrl} />
+                <GameCard key={game.id} game={game} onPlay={setGameUrl} portrait />
               ))}
             </div>
           </div>

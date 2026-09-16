@@ -77,21 +77,51 @@ const CategoriesPage = () => {
             ))}
           </div>
 
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-            {filteredGames.map((game, idx) => (
-              <div key={idx} className="group relative overflow-hidden rounded-xl border-2 border-violet-300/30 transition-all hover:border-violet-300">
-                <div className="aspect-square w-full overflow-hidden bg-violet-300/20">
-                  <img src={game.thumbnail_url} alt={game.name} referrerPolicy="no-referrer" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" />
+          <div className={`grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 ${
+            selectedCategory === "Premium Games" ? "rounded-3xl border border-yellow-300/50 bg-yellow-300/10 p-3 sm:p-5" : ""
+          }`}>
+            {filteredGames.map((game, idx) => {
+              const isPremium = selectedCategory === "Premium Games";
+              return (
+                <div
+                  key={idx}
+                  onClick={() => handlePlay(game.game_url)}
+                  className={`group relative cursor-pointer overflow-hidden rounded-xl border-2 bg-black transition-all duration-300 hover:-translate-y-1 ${
+                    isPremium
+                      ? "border-yellow-300 shadow-[0_0_18px_rgba(237,255,102,0.25)]"
+                      : "border-violet-300/30 hover:border-violet-300"
+                  }`}
+                >
+                  <div className="relative aspect-square w-full">
+                    <img
+                      src={game.thumbnail_url}
+                      alt={game.name}
+                      loading="lazy"
+                      className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  {isPremium && (
+                    <span className="absolute left-2 top-2 z-20 rounded-full bg-yellow-300 px-2.5 py-1 font-general text-[10px] font-bold uppercase tracking-wider text-black">
+                      Premium
+                    </span>
+                  )}
+                  <div className="pointer-events-none absolute inset-0 z-10 flex flex-col items-center justify-center bg-black/75 p-3 opacity-0 transition-opacity duration-300 group-hover:pointer-events-auto group-hover:opacity-100">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handlePlay(game.game_url);
+                      }}
+                      className={`flex items-center gap-1 rounded-full px-4 py-2 font-general text-xs font-bold uppercase text-black transition-transform hover:scale-110 ${
+                        isPremium ? "bg-yellow-300" : "bg-violet-300"
+                      }`}
+                    >
+                      <span>{t.playBtn}</span>
+                      <TiLocationArrow />
+                    </button>
+                  </div>
                 </div>
-                <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/80 opacity-0 transition-opacity group-hover:opacity-100">
-                  <h3 className="mb-3 px-2 text-center font-general text-sm font-bold text-white md:text-base">{game.name}</h3>
-                  <button onClick={() => handlePlay(game.game_url)} className="flex items-center gap-1 rounded-full bg-violet-300 px-4 py-2 font-general text-xs font-bold uppercase text-black transition-transform hover:scale-110">
-                    <span>{t.playBtn}</span>
-                    <TiLocationArrow />
-                  </button>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>

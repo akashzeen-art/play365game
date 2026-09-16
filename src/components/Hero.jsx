@@ -23,10 +23,15 @@ const Hero = () => {
   };
 
   useEffect(() => {
-    if (loadedVideos === totalVideos - 1) {
+    if (loadedVideos >= 1) {
       setLoading(false);
     }
   }, [loadedVideos]);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(timeout);
+  }, []);
 
   const handleMiniVdClick = () => {
     setHasClicked(true);
@@ -137,6 +142,8 @@ const Hero = () => {
             playsInline
             className="absolute left-0 top-0 size-full object-cover object-center"
             onLoadedData={handleVideoLoad}
+            onCanPlay={handleVideoLoad}
+            onError={handleVideoLoad}
           />
         </div>
 

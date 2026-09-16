@@ -30,7 +30,7 @@ const About = () => {
   return (
     <div id="about" className="min-h-screen w-screen">
       <div className="relative mb-8 mt-36 flex flex-col items-center gap-5">
-        <p className="font-general text-sm uppercase md:text-[10px]">
+        <p className="font-general text-2xl font-bold uppercase tracking-[0.18em] text-black md:text-4xl lg:text-5xl">
           {t.welcomeTo}
         </p>
 
