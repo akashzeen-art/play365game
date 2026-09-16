@@ -87,94 +87,98 @@ const Features = () => {
   return (
   <section className="bg-black pb-52">
     <div className="container mx-auto px-3 md:px-10">
-      <div className="px-5 py-32">
-        <p className="font-circular-web text-lg text-blue-50">
+      <div className="px-5 py-24 md:py-32">
+        <p className="font-circular-web text-2xl text-blue-50 md:text-4xl">
           {t.exploreCategories}
         </p>
-        <p className="max-w-md font-circular-web text-lg text-blue-50 opacity-50">
+        <p className="mt-4 max-w-xl font-circular-web text-lg text-blue-50 opacity-70 md:text-2xl">
           {t.exploreDesc}
         </p>
       </div>
 
-      <BentoTilt className="relative mb-7 h-96 w-full overflow-hidden rounded-md border-2 border-yellow-300 shadow-[0_0_36px_rgba(237,255,102,0.28)] md:h-[65vh]">
-        <BentoCard
-          src="videos/feature-5.mp4"
-          title={
-            <span className="block text-yellow-300">
-              <span className="mb-4 inline-flex rounded-full bg-yellow-300 px-3 py-1 font-general text-[10px] font-bold uppercase tracking-[0.2em] text-black md:text-xs">
-                Exclusive
+      <div className="mb-7 grid grid-cols-1 gap-7 md:grid-cols-2">
+        <BentoTilt className="relative h-96 w-full overflow-hidden rounded-md border-2 border-yellow-300 shadow-[0_0_36px_rgba(237,255,102,0.28)] md:h-[52vh]">
+          <BentoCard
+            src="videos/feature-5.mp4"
+            title={
+              <span className="block text-yellow-300">
+                <span className="mb-4 inline-flex rounded-full bg-yellow-300 px-3 py-1 font-general text-[10px] font-bold uppercase tracking-[0.2em] text-black md:text-xs">
+                  Exclusive
+                </span>
+                <span className="mt-3 block" dangerouslySetInnerHTML={{ __html: t.premiumGames }} />
               </span>
-              <span className="mt-3 block" dangerouslySetInnerHTML={{ __html: t.premiumGames }} />
-            </span>
-          }
-          description={t.premium}
-          onClick={() => navigate('/categories', { state: { category: 'Premium Games' } })}
-          isComingSoon
-        />
-      </BentoTilt>
+            }
+            description={t.premium}
+            onClick={() => navigate('/categories', { state: { category: 'Premium Games' } })}
+          />
+        </BentoTilt>
 
-      <BentoTilt className="border-hsla relative mb-7 h-96 w-full overflow-hidden rounded-md md:h-[65vh]">
-        <BentoCard
-          src="videos/feature-1.mp4"
-          title={<span dangerouslySetInnerHTML={{ __html: t.actionTitle }} />}
-          description={t.action}
-          onClick={() => navigate('/categories', { state: { category: 'Action' } })}
-          isComingSoon
-        />
-      </BentoTilt>
+        <BentoTilt className="border-hsla relative h-96 w-full overflow-hidden rounded-md md:h-[52vh]">
+          <BentoCard
+            src="videos/feature-1.mp4"
+            title={<span dangerouslySetInnerHTML={{ __html: t.actionTitle }} />}
+            description={t.action}
+            onClick={() => navigate('/categories', { state: { category: 'Action' } })}
+          />
+        </BentoTilt>
+      </div>
 
-      <div className="grid h-[135vh] w-full grid-cols-2 grid-rows-3 gap-7">
-        <BentoTilt className="bento-tilt_1 row-span-1 md:col-span-1 md:row-span-2">
+      <div className="mb-7 grid grid-cols-1 gap-7 md:grid-cols-2 md:h-[78vh]">
+        <BentoTilt className="border-hsla relative h-[70vh] w-full overflow-hidden rounded-md md:h-full">
           <BentoCard
             src="videos/feature-2.mp4"
             title={<span dangerouslySetInnerHTML={{ __html: t.puzzleTitle }} />}
             description={t.puzzle}
             onClick={() => navigate('/categories', { state: { category: 'Puzzle' } })}
-            isComingSoon
           />
         </BentoTilt>
 
-        <BentoTilt className="bento-tilt_1 row-span-1 ms-32 md:col-span-1 md:ms-0">
-          <BentoCard
-            src="videos/feature-3.mp4"
-            title={<span dangerouslySetInnerHTML={{ __html: t.top10Title }} />}
-            description={t.top10}
-            onClick={() => navigate('/categories', { state: { category: 'Top 10 Games' } })}
-            isComingSoon
-          />
-        </BentoTilt>
+        <div className="grid h-[70vh] grid-rows-2 gap-7 md:h-full">
+          <BentoTilt className="border-hsla relative overflow-hidden rounded-md">
+            <BentoCard
+              src="videos/feature-3.mp4"
+              title={<span dangerouslySetInnerHTML={{ __html: t.top10Title }} />}
+              description={t.top10}
+              onClick={() => navigate('/categories', { state: { category: 'Top 10 Games' } })}
+            />
+          </BentoTilt>
 
-        <BentoTilt className="bento-tilt_1 me-14 md:col-span-1 md:me-0">
-          <BentoCard
-            src="videos/feature-4.mp4"
-            title={<span dangerouslySetInnerHTML={{ __html: t.arcadeTitle }} />}
-            description={t.arcade}
-            onClick={() => navigate('/categories', { state: { category: 'Arcade' } })}
-            isComingSoon
-          />
-        </BentoTilt>
+          <BentoTilt className="border-hsla relative overflow-hidden rounded-md">
+            <BentoCard
+              src="videos/feature-4.mp4"
+              title={<span dangerouslySetInnerHTML={{ __html: t.arcadeTitle }} />}
+              description={t.arcade}
+              onClick={() => navigate('/categories', { state: { category: 'Arcade' } })}
+            />
+          </BentoTilt>
+        </div>
+      </div>
 
-        <BentoTilt className="bento-tilt_2">
-          <div 
-            onClick={() => navigate('/categories', { state: { category: 'All Games' } })} 
-            className="flex size-full flex-col justify-between bg-violet-300 p-5 cursor-pointer"
-          >
-            <h1 className="bento-title special-font max-w-64 text-black" dangerouslySetInnerHTML={{ __html: t.moreGames }} />
-
-            <TiLocationArrow className="m-5 scale-[5] self-end" />
-          </div>
-        </BentoTilt>
-
-        <BentoTilt className="bento-tilt_2">
+      <BentoTilt className="relative h-80 w-full overflow-hidden rounded-md border border-violet-300 md:h-[46vh]">
+        <div
+          onClick={() => navigate('/categories', { state: { category: 'All Games' } })}
+          className="relative size-full cursor-pointer"
+        >
           <video
-            src="videos/feature-5.mp4"
+            src="videos/hero-2.mp4"
             loop
             muted
             autoPlay
-            className="size-full object-cover object-center"
+            playsInline
+            className="absolute inset-0 size-full object-cover"
           />
-        </BentoTilt>
-      </div>
+          <div className="absolute inset-0 bg-gradient-to-r from-violet-300/80 via-black/55 to-black/20" />
+          <div className="relative z-10 flex size-full flex-col justify-between p-6 md:p-10">
+            <p className="w-fit rounded-full border border-yellow-300 bg-black/40 px-4 py-1 font-general text-xs uppercase tracking-[0.25em] text-yellow-300">
+              {t.allGames}
+            </p>
+            <div className="flex items-end justify-between gap-4">
+              <h1 className="bento-title special-font max-w-xl text-white" dangerouslySetInnerHTML={{ __html: t.moreGames }} />
+              <TiLocationArrow className="mb-2 size-16 shrink-0 text-yellow-300 md:size-24" />
+            </div>
+          </div>
+        </div>
+      </BentoTilt>
     </div>
   </section>
   );

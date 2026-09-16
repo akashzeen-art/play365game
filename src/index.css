@@ -73,7 +73,7 @@ body {
   }
 
   .floating-nav {
-    @apply bg-black rounded-lg border;
+    @apply rounded-full border border-black/10 bg-white text-black shadow-[0_12px_32px_rgba(0,0,0,0.12)];
   }
 
   .absolute-center {

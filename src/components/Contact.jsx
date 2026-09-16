@@ -39,7 +39,7 @@ const Contact = () => {
         </div>
 
         <div className="flex flex-col items-center text-center">
-          <p className="mb-10 font-general text-[10px] uppercase">
+          <p className="mb-10 font-general text-2xl font-bold uppercase tracking-[0.16em] md:text-4xl">
             {t.joinCommunity}
           </p>
 

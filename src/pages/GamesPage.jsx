@@ -40,6 +40,15 @@ const games = [
   { id: 27, img: "https://cdn.timepass.games/images/09717a3d-6f4c-4396-ab37-5765173e43d2.webp", title: "Final Strike", category: "Action", link: "https://cdn.timepass.games/games/05cb773c-9b54-4773-aedc-24a42b568584/aee3cd6b-808d-432b-be3d-e0efe6b2f2ee/" },
 ];
 
+const shuffleList = (list) => {
+  const next = [...list];
+  for (let i = next.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [next[i], next[j]] = [next[j], next[i]];
+  }
+  return next;
+};
+
 const GameCard = ({ game, onPlay, premium = false, portrait = false }) => {
   const { t } = useLanguage();
 
@@ -138,6 +147,7 @@ const GamesPage = () => {
   const [isTablet, setIsTablet] = useState(false);
   const [gameUrl, setGameUrl] = useState(null);
   
+  const [shuffledPremium] = useState(() => shuffleList(premiumGames));
   const sliderGames = games.slice(0, 7);
   const circleGames = games.slice(7, 15);
   const gridGames = games.slice(15, 27);
@@ -187,17 +197,23 @@ const GamesPage = () => {
         />
         <div className="fixed inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70" />
         <div className="container relative z-10 mx-auto px-5 md:px-10">
-          <div className="mb-16 text-center">
-            <p className="games-subtitle mb-3 font-general text-xs uppercase tracking-wider text-violet-300 md:text-sm">
+          <div className="relative mb-20 overflow-hidden rounded-[2rem] border border-violet-300/40 px-5 py-12 text-center shadow-[0_0_48px_rgba(87,36,255,0.28)] md:px-12 md:py-16">
+            <div className="pointer-events-none absolute -left-20 -top-16 size-56 rounded-full bg-violet-300/30 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-16 -right-10 size-48 rounded-full bg-yellow-300/20 blur-3xl" />
+            <span className="pointer-events-none absolute left-5 top-5 size-8 border-l-2 border-t-2 border-yellow-300" />
+            <span className="pointer-events-none absolute right-5 top-5 size-8 border-r-2 border-t-2 border-yellow-300" />
+            <span className="pointer-events-none absolute bottom-5 left-5 size-8 border-b-2 border-l-2 border-yellow-300" />
+            <span className="pointer-events-none absolute bottom-5 right-5 size-8 border-b-2 border-r-2 border-yellow-300" />
+            <p className="games-subtitle relative font-zentry text-3xl font-black uppercase leading-none tracking-[0.08em] text-yellow-300 sm:text-5xl md:text-6xl lg:text-7xl">
               {t.playConquer}
             </p>
-            <div className="games-title">
+            <div className="games-title relative mt-4">
               <AnimatedTitle
                 title={t.exploreEpic}
                 containerClass="!text-white"
               />
             </div>
-            <p className="games-subtitle mx-auto mt-5 max-w-2xl font-circular-web text-sm text-white/70 md:text-base">
+            <p className="games-subtitle relative mx-auto mt-6 max-w-3xl font-circular-web text-lg text-white/85 md:text-xl">
               {t.thrilling}
             </p>
           </div>
@@ -227,25 +243,40 @@ const GamesPage = () => {
             </div>
           </div>
 
-          <div className="relative mb-20 overflow-hidden rounded-3xl border border-yellow-300/60 bg-gradient-to-br from-yellow-300/15 via-violet-300/20 to-black/40 p-4 shadow-[0_0_40px_rgba(237,255,102,0.15)] sm:p-6 md:p-8">
-            <div className="pointer-events-none absolute -right-10 -top-10 size-40 rounded-full bg-yellow-300/20 blur-3xl" />
-            <div className="relative mb-6 flex flex-col items-start gap-3 sm:flex-row sm:items-end sm:justify-between">
-              <div>
-                <span className="mb-3 inline-flex items-center rounded-full bg-yellow-300 px-3 py-1 font-general text-[10px] font-bold uppercase tracking-[0.2em] text-black md:text-xs">
-                  Exclusive
-                </span>
-                <h2 className="special-font text-2xl font-black uppercase text-yellow-300 sm:text-3xl md:text-5xl"
-                  dangerouslySetInnerHTML={{ __html: t.premiumGames }}
-                />
-                <p className="mt-2 max-w-xl font-circular-web text-sm text-white/80 md:text-base">
-                  {t.premium}
+          <div className="relative mb-20 overflow-hidden rounded-[2rem] border-2 border-yellow-300 shadow-[0_0_48px_rgba(237,255,102,0.22)]">
+            <video
+              src="/videos/feature-5.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute inset-0 size-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/75 to-violet-300/30" />
+            <div className="pointer-events-none absolute -left-16 top-0 size-52 rounded-full bg-yellow-300/25 blur-3xl" />
+            <div className="relative grid gap-6 p-4 sm:p-6 md:grid-cols-[280px_1fr] md:p-8 lg:grid-cols-[320px_1fr]">
+              <div className="flex h-fit flex-col justify-between rounded-2xl border border-yellow-300/50 bg-black/55 p-5 backdrop-blur-md md:sticky md:top-28">
+                <div>
+                  <span className="inline-flex rounded-full bg-yellow-300 px-3 py-1 font-general text-xs font-bold uppercase tracking-[0.22em] text-black">
+                    Exclusive
+                  </span>
+                  <h2
+                    className="special-font mt-4 text-4xl font-black uppercase leading-[0.9] text-yellow-300 sm:text-5xl md:text-6xl"
+                    dangerouslySetInnerHTML={{ __html: t.premiumGames }}
+                  />
+                  <p className="mt-4 font-circular-web text-base text-white/85 md:text-lg">
+                    {t.premium}
+                  </p>
+                </div>
+                <p className="mt-8 font-general text-sm font-bold uppercase tracking-[0.18em] text-yellow-300">
+                  {shuffledPremium.length} titles
                 </p>
               </div>
-            </div>
-            <div className="relative grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
-              {premiumGames.map((game) => (
-                <GameCard key={game.id} game={game} onPlay={setGameUrl} premium />
-              ))}
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 xl:grid-cols-4">
+                {shuffledPremium.map((game) => (
+                  <GameCard key={game.id} game={game} onPlay={setGameUrl} premium />
+                ))}
+              </div>
             </div>
           </div>
 

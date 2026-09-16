@@ -49,7 +49,7 @@ const FloatingImage = () => {
   return (
     <div id="story" className="min-h-dvh w-screen bg-black text-blue-50">
       <div className="flex size-full flex-col items-center py-10 pb-24">
-        <p className="font-general text-sm uppercase md:text-[10px]">
+        <p className="font-general text-2xl font-bold uppercase tracking-[0.16em] md:text-4xl">
           {t.journeyStarts}
         </p>
 
